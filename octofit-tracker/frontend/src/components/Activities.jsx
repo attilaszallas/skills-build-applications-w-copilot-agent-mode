@@ -1,5 +1,10 @@
 import CollectionPage from './CollectionPage.jsx'
 
+const codespaceName = import.meta.env.VITE_CODESPACE_NAME?.trim()
+const endpoint = codespaceName
+  ? `https://${codespaceName}-8000.app.github.dev/api/activities/`
+  : '/api/activities/'
+
 function formatDate(value) {
   if (!value) return '-'
   const date = new Date(value)
@@ -23,6 +28,7 @@ function Activities() {
       title="Activity log"
       description="Recent sessions from across your training community."
       resource="activities"
+      endpoint={endpoint}
       columns={columns}
     />
   )
